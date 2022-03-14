@@ -13,19 +13,14 @@
 <body>
 <%--<a href="http://www.ecjtu.jx.cn/">go to ecjtu</a>--%>
 <p>New User Registration!</p>
-<form>
-    <tr>
-        <td bgcolor="#ffe4c4">
-    <input type="text" name="Username" value="Username" size="25"><br/>
-    <input type="text" name="Password" value="Password" size="25"><br/>
-    <input type="text" name="Email" value="Email" size="25"><br/>
-    Gender:<input name="sex" type="radio" value="Male"/>male
-    <input name="sex" type="radio" value="Female"/>Female<br/>
-    <input type="text" name="Date of Brith(yyyy-mm-dd)" value="Date of Brith(yyyy-mm-dd)" size="25"><br/>
-    <br/>
-            <input type="submit" value="Register"/>
-        </td>
-    </tr>
+<form method="post" action="register">
+
+    username<input type="text" name="username" ><br/>
+    password<input type="password" name="password" ><br/>
+    Email<input type="text" name="email"><br/>
+    Gender:<input name="gender" type="radio" value="male">male<input name="gender" type="radio"value="Female">Female<br/>
+    Date of Birth<input type="text" name="birthDate"><br/>
+    <input type="submit" value="Register"/>
 </form>
 </body>
 </html>
