@@ -3,26 +3,76 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.mysql.cj.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:mysql://localhost:3306/userdb</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>root</param-value>
+    </context-param>
+
+    <!--<servlet>
+        <servlet-name>ConfigServlet</servlet-name>
+        <servlet-class>com.Songzhiyongweek4.ConfigServlet</servlet-class>
+    </servlet>-->
     <servlet>
         <servlet-name>Songzhiyong</servlet-name>
         <servlet-class>Songzhiyong.week2.demo.HelloWorldServlet</servlet-class>
     </servlet>
-    <servlet>
+    <!--<servlet>
         <servlet-name>LifeCycleServlet</servlet-name>
         <servlet-class>com.Songzhiyongweek3.LifeCycleServlet</servlet-class>
-    </servlet>
+    </servlet>-->
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.Songzhiyongweek3.RegisterServlet</servlet-class>
     </servlet>
+    <!--<servlet>
+        <servlet-name>JDBCemoServlet</servlet-name>
+        <servlet-class>com.Songzhiyong.week4.JDBCDemoServlet</servlet-class>
+        <init-param>
+            <param-name>driver</param-name>
+            <param-value>com.mysql.cj.jdbc.Driver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>url</param-name>
+            <param-value>jdbc:mysql://localhost:3306/userdb</param-value>
+        </init-param>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>root</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>-->
     <servlet-mapping>
         <servlet-name>Songzhiyong</servlet-name>
         <url-pattern>/hello.html</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+    <!--<servlet-mapping>
+        <servlet-name>ConfigServlet</servlet-name>
+        <url-pattern>/config</url-pattern>
+    </servlet-mapping>-->
+    <!--<servlet-mapping>
         <servlet-name>LifeCycleServlet</servlet-name>
         <url-pattern>/life</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
+    <!--<servlet-mapping>
+        <servlet-name>JDBCemoServlet</servlet-name>
+        <url-pattern>/jdbc</url-pattern>
+    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
