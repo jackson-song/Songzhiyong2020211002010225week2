@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 32312
-  Date: 2022/3/21
-  Time: 19:03
+  Date: 2022/3/29
+  Time: 20:54
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,12 +11,16 @@ This is my page
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Login Page</title>
 </head>
 <body>
-<p>name:Songhzhiyong<p>
-<p>studentid:2020211002010225</p>
+<h1>Login</h1>
+<form method="post" action="Login">
 
+    Username<input type="text" name="Username" ><br/>
+    Password<input type="password" name="Password" ><br/>
+    <input type="submit" value="Login"/>
+</form>
 </body>
 </html>
 <%@ include file="footer.jsp"%>
