@@ -85,15 +85,102 @@ public class LoginServlet extends HttpServlet {
 //         AND PASSWORD ="YYY"
 //        TODO 5: CHECK IF(USER IS VALID){
 //        OUT.PRINTLN("LOGIN SUCCESS")
-        this.doGet(request, response);
-    }
-    @Override
-    public void destroy() {
-        super.destroy();
+
+
+
+
+
+//        this.doGet(request, response);
+//    }
+//    @Override
+//    public void destroy() {
+//        super.destroy();
+//        try {
+//            con.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        PrintWriter writer = response.getWriter();
+        String sql = "Select * from student where username = ? and password = ?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            try {
+                ps = con.prepareStatement(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                ps.setString(1, username);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                ps.setString(2, password);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                rs = ps.executeQuery();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (rs.next()) {
+                    try {
+                        request.setAttribute("id", rs.getInt("id"));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    request.setAttribute("username", username);
+                    request.setAttribute("password", password);
+                    try {
+                        request.setAttribute("email", rs.getString("email"));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        request.setAttribute("gender", rs.getString("gender"));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        request.setAttribute("birthdate", rs.getString("birthdate"));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    request.getRequestDispatcher("userInfo.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("message", "Username or Password Error!");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            try {
+                if(rs!=null){
+
+                    rs.close();
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(ps!=null){
+
+                    ps.close();
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

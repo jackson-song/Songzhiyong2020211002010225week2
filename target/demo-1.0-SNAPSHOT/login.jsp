@@ -15,6 +15,12 @@ This is my page
 </head>
 <body>
 <h1>Login</h1>
+<%
+    if (!(request.getAttribute("mesage") ==null)){
+        out.print(request.getAttribute("message"));
+    }
+%>
+<br/>
 <form method="post" action="Login">
 
     Username<input type="text" name="Username" ><br/>
