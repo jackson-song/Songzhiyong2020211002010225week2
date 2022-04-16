@@ -4,9 +4,7 @@ import com.Songzhiyong.model.Users;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -17,7 +15,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        /*super.init();
+super.init();
         ServletContext context = getServletContext();
         String driver = context.getInitParameter("driver");
         String url = context.getInitParameter("url");
@@ -29,7 +27,8 @@ public class LoginServlet extends HttpServlet {
             System.out.println("Connection -->"+con);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/views/Login.jsp").forward(request, response);
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-       /* PrintWriter writer = response.getWriter();
+ PrintWriter writer = response.getWriter();
         StringBuilder sql = new StringBuilder();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -79,7 +78,8 @@ public class LoginServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
+
     }
 
     @Override
@@ -193,8 +193,28 @@ public class LoginServlet extends HttpServlet {
         try {
             Users user = userdao.findByUsernamePassword(con, username, password);
             if (user != null) {
+                System.out.println("rememberMe===>"+request.getParameter("rememberMe"));
+                if (request.getParameter("rememberMe")!=null){
+                    Cookie usernameCookie = new Cookie("cUsername", user.getUsername());
+                    Cookie passwordCookie = new Cookie("cPassword", user.getPassword());
+                    Cookie rememberMeCookie = new Cookie("cRememberMe", request.getParameter("rememberMe"));
+                    usernameCookie.setMaxAge(60);
+                    passwordCookie.setMaxAge(60);
+                    rememberMeCookie.setMaxAge(60);
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                    response.addCookie(rememberMeCookie);
+                }
+                HttpSession session = request.getSession();
+                System.out.println("session id-->"+session.getId());
+                session.setMaxInactiveInterval(10);
+                session.setAttribute("user",user);
                 request.setAttribute("user", user);
+                Cookie c = new Cookie("sessioned",""+user.getId());
+                c.setMaxAge(10*60);
+                response.addCookie(c);
                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request, response);
+
             } else {
                 request.setAttribute("message", "Username or Password error!!!");
                 request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);

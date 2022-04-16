@@ -51,9 +51,20 @@ public class UserDao implements IUserDao {
         return 0;
     }
 
-    @Override
+
     public int updateUser(Connection con, Object o) throws SQLException {
+//        String sql = "update usertable set username=?,password=?,email=?,gender=?,birthdate=? where id=?";
+//        PreparedStatement preparedStatement = con.prepareStatement(sql);
+//        preparedStatement.setString(1, user.getUsername());
+//        preparedStatement.setString(2, user.getPassword());
+//        preparedStatement.setString(3, user.getEmail());
+//        preparedStatement.setString(4, user.getGender());
+//        preparedStatement.setDate(5, new java.sql.Date(user.getBirth().getTime()));
+//        preparedStatement.setInt(6, user.getId());
+//        int result = preparedStatement.executeUpdate();
+//        return result;
         return 0;
+
     }
 
     public Users findById(Connection con, Integer id) throws SQLException {

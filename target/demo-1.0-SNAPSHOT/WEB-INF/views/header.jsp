@@ -5,6 +5,7 @@
   Time: 20:20
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.Songzhiyong.model.Users" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -41,9 +42,20 @@
     </tr>
     <tr height="25"><td align="right"><font size="18" color="blue">
         Welcome,<font size="18" color="red"> Guest</font>
+        <%
+            Users user1 = (Users) session.getAttribute("user");
+            if (user1!=null){
+                out.println(user1.getUsername());
+            }else {
+                out.println("Guest");
+            }
+        %>
     </font></td> </tr>
     <tr height="20"><td align="right">
-        <br> <a href="#">Logout</a>
+<%--        <br> <a href="#">Logout</a>--%>
+    <% if (session.getAttribute("user")!=null){%>
+    <br> <a href="logout">Logout</a>
+    <%}%>
         <br><a href="#">My Cart</a><br/>
         <a href="register.jsp">Register Here</a>
     </td></tr>
