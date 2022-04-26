@@ -1,32 +1,22 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 32312
-  Date: 2022/3/29
-  Time: 20:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp"%>
-This is my page
 
-<html>
-<head>
-    <title>Login Page</title>
-</head>
-<body>
-<h1>Login</h1>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="header.jsp"%>
+<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+					<h2>Login to your account</h2>	<%
+    if(!(request.getAttribute("message")==null)){
+    out.println("<h2>"+request.getAttribute("message")+"</h2>");
+}%>
 <%
-    if (!(request.getAttribute("mesage") ==null)){
-        out.print(request.getAttribute("message"));
-    }
-%>
-<%
-    Cookie[] cookies = request.getCookies();
+    Cookie[] cookies=request.getCookies();
     String username="";
     String password="";
-    String rememberValue="";
+    String rememberMe="";
     if (cookies!=null){
-        for (Cookie cookie : cookies) {
+        for (Cookie cookie:cookies){
             if (cookie.getName().equals("cUsername")){
                 username=cookie.getValue();
             }
@@ -34,34 +24,27 @@ This is my page
                 password=cookie.getValue();
             }
             if (cookie.getName().equals("cRememberMe")){
-                rememberValue=cookie.getValue();
+                rememberMe=cookie.getValue();
             }
-            System.out.println(cookie);
-            System.out.println(cookie.getName());
         }
     }
+    //update 5 user basepath
 %>
-<br/>
-<%--<form method="post" action="Login">--%>
 
-<%--    Username<input type="text" name="Username" ><br/>--%>
-<%--    Password<input type="password" name="Password" ><br/> --%>
-<%--    <input type="submit" value="Login"/>--%>
-<%--</form>--%>
-<form method="post" action="Login">
-    <%--<form method="post" action="${pageContext.request.contextPath}/login">--%>
-    <div>
-        <span>Username：</span><input type="text" name="username" value="<%=username%>">
-    </div>
-    <div>
-        <span>Password：</span><input type="password" name="password"  value="<%=password%>">
-    </div>
-    <div><input type="checkbox" name="rememberMe" value="1" <%=rememberValue.equals("1") ? "checked" : ""%> />rememberMe</div>
-    <div>
-        <input type="submit" value="login">
-    </div>
-</form>
-</div>
-</body>
-</html>
-<%@ include file="footer.jsp"%>
+<form method="post" action="<%=basePath+"login"%>">
+    <input type="text" name="username" placeholder="Username" value="<%=username%>"><br>
+   <input type="password" name="password" placeholder="password" value="<%=password%>">
+    <br/>
+    <span>
+		<input type="checkbox" class="checkbox" name="remember" value="1" <%="1".equals(rememberMe)? "checked":""%>/> Keep me signed in
+   </span>
+    <button type="submit" class="btn btn-default">Login</button>
+</form>	
+					</div><!--/login form-->
+				</div>
+				
+				
+			</div>
+		</div>
+	</section><!--/form-->
+<%@include file="footer.jsp"%>

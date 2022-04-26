@@ -1,41 +1,68 @@
-<%--<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>--%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="header.jsp"%>
 
+<%@include file="header.jsp"%>
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+						
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>My E-Commerce Website</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="<%=basePath%>images/home/girl1.jpg" class="girl img-responsive" alt="" />
+									<img src="<%=basePath%>images/home/pricing.png"  class="pricing" alt="" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>100% Responsive Design</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="<%=basePath%>images/home/girl2.jpg" class="girl img-responsive" alt="" />
+									<img src="<%=basePath%>images/home/pricing.png"  class="pricing" alt="" />
+								</div>
+							</div>
+							
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>My Ecommerce Website</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="<%=basePath%>images/home/girl3.jpg" class="girl img-responsive" alt="" />
+									<img src="<%=basePath%>images/home/pricing.png" class="pricing" alt="" />
+								</div>
+							</div>
+							
+						</div>
+						
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+<%@include file="footer.jsp"%>
 
-<html>
-<head>
-    <title>JSP - Hello World</title>
-</head>
-<body>
-<h1>This is my page</h1>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet-week1</a>
-<br/>
-<a href="hello">Student Info Servlet-week2</a>
-<br/>
-<a href="life">Life Cycle Servlet-week3</a>
-<br/>
-<a href="register.jsp">Register-getParameter-week3</a>
-<br/>
-<a href="config">Config Parameter-week4</a>
-<br/>
-<a href="register.jsp">Register JDBC-week4</a>
-<br/>
-<a href="index.jsp">Include-week5</a>
-<br/>
-<a href="login.jsp">Login-week5</a>
-<form method="post" action="register">
-
-    username<input type="text" name="username" ><br/>
-    password<input type="password" name="password" ><br/>
-    Email<input type="text" name="email"><br/>
-    Gender:<input name="gender" type="radio" value="male">male<input name="gender" type="radio"value="Female">Female<br/>
-    Date of Birth<input type="text" name="birthDate"><br/>
-    <input type="submit" value="Register"/>
-</form>
-</body>
-</html>
-<%@ include file="footer.jsp"%>
