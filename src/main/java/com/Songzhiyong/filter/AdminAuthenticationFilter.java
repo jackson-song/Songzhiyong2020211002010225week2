@@ -21,7 +21,7 @@ import java.io.IOException;
 //    }
 //}
 
-@WebFilter("/admin/*")//this filter for all admin url
+//@WebFilter("/admin/*")//this filter for all admin url
 public class AdminAuthenticationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
