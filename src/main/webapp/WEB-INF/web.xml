@@ -96,4 +96,21 @@
         <filter-name>FrontEndAuthenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <filter>
+        <filter-name>Lab1MyDearServlet</filter-name>
+        <filter-class>com.Songzhiyong.Lab1.lab1MyDearServlet</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Lab1MyDearServlet</filter-name>
+        <url-pattern>/Lab1MyDearServlet</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>lab1LifeCycleServlet</filter-name>
+        <filter-class>com.Songzhiyong.Lab1.lab1LifeCycleServlet</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>lab1LifeCycleServlet</filter-name>
+        <url-pattern>/lab1LifeCycleServlet</url-pattern>
+    </filter-mapping>
+
 </web-app>
