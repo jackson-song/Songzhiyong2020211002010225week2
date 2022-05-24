@@ -1,4 +1,4 @@
-package com.Songzhiyong.controller;
+package com.controller;
 
 import com.Songzhiyong.dao.UserDao;
 import com.Songzhiyong.model.Users;

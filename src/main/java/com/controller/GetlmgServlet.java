@@ -1,6 +1,5 @@
-package com.Songzhiyong.controller;
+package com.controller;
 
-import com.Songzhiyong.dao.ProductDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

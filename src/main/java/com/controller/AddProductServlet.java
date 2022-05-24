@@ -1,19 +1,19 @@
-package com.Songzhiyong.controller;
+package com.controller;
 
 import com.Songzhiyong.dao.ProductDao;
-import jdk.jfr.Category;
+import com.Songzhiyong.model.Category;
+import com.Songzhiyong.model.Product;
+import com.Songzhiyong.dao.ProductDao;
+import com.Songzhiyong.model.Product;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 @WebServlet(name = "AddProductServlet", value = "/admin/addProduct")
@@ -23,7 +23,6 @@ public class AddProductServlet extends HttpServlet {
 
     public void init() {
         con = (Connection) getServletContext().getAttribute("connection");
-        System.out.println(con);
     }
 
     @Override
@@ -39,7 +38,7 @@ public class AddProductServlet extends HttpServlet {
     }
 
     @Override
-    protected <Product> void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productName = request.getParameter("productName");
         Double price = request.getParameter("price") != null ? Double.parseDouble(request.getParameter("price")) : 0.0;
         Integer categoryId = request.getParameter("categoryId") != null ? Integer.parseInt(request.getParameter("categoryId")) : 8;

@@ -1,4 +1,4 @@
-package com.Songzhiyong.controller;
+package com.controller;
 
 import com.Songzhiyong.dao.ProductDao;
 import com.Songzhiyong.model.Category;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.Songzhiyong.controller;
+package com.controller;
 
 import com.Songzhiyong.dao.ProductDao;
 import com.Songzhiyong.model.Category;

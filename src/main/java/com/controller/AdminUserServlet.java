@@ -1,5 +1,6 @@
-package com.Songzhiyong.controller;
+package com.controller;
 
+import com.Songzhiyong.model.Users;
 import com.Songzhiyong.model.Users;
 
 import javax.servlet.*;
@@ -29,6 +30,5 @@ public class AdminUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doGet(request, response);
-        System.out.println("ewidjdq");
     }
 }

@@ -81,4 +81,10 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
+
+    public void setProductID(int productID) {
+    }
+
+    public void setCategoryID(int categoryID) {
+    }
 }
