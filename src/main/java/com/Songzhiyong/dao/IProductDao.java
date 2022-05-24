@@ -1,8 +1,7 @@
 package com.Songzhiyong.dao;
 
-import com.Songzhiyong.model.Users;
+import com.Songzhiyong.model.Product;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;

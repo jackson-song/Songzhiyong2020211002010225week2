@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

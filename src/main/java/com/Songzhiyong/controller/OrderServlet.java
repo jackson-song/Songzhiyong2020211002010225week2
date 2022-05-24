@@ -1,8 +1,9 @@
-package com.controller;
+package com.Songzhiyong.controller;
 
 import com.Songzhiyong.dao.OrderDao;
 import com.Songzhiyong.model.Item;
 import com.Songzhiyong.model.Order;
+import com.Songzhiyong.model.Payment;
 import com.Songzhiyong.model.Product;
 
 import javax.servlet.*;

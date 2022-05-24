@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -33,6 +33,9 @@ public class Category {
         this.active = active;
     }
 
+    public static List<Category> findAllCategory(Connection con) {
+    }
+
     public Integer getCategoryId() {
         return categoryId;
     }

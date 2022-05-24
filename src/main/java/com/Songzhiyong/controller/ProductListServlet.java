@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 
 
 import com.Songzhiyong.dao.ProductDao;
@@ -10,6 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @WebServlet("/admin/productList")

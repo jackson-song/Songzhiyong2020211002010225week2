@@ -1,4 +1,4 @@
-package com.Songzhiyong.Lab1;
+package com.Songzhiyong.lab1;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "lab1MyDearServlet", value = "/lab1MyDear")
-public class lab1MyDearServlet extends HttpServlet {
+public class Lab1MyDearServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("666");

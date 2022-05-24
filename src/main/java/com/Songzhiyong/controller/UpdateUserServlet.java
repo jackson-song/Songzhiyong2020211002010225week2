@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 /*
  * coding: UTF-8
  * @Author: 宋智勇
@@ -61,7 +61,7 @@ public class UpdateUserServlet extends HttpServlet {
         String email = req.getParameter("Email");
         String gender = req.getParameter("gender");
         String birthdate = req.getParameter("Birthdate");
-        User user = new User();
+        Users user = new Users();
         try {
             Users users;
             users.setId(Integer.parseInt(id));

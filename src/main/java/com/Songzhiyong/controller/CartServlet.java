@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 
 import com.Songzhiyong.dao.ProductDao;
 import com.Songzhiyong.model.Category;
@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 
 @WebServlet(name = "AddProductServlet", value = "/admin/addProduct")
 @MultipartConfig(maxFileSize = 16177215)  // upload file's size up to 16MB
-public class AddProductServlet extends HttpServlet {
+public class CartServlet extends HttpServlet {
     private Connection con = null;
     private static final Logger log = Logger.getLogger(String.valueOf(AddProductServlet.class));
 
@@ -54,7 +55,7 @@ public class AddProductServlet extends HttpServlet {
         Part filePart = request.getPart("picture");
         if (filePart != null){
             System.out.println("file name :" + filePart.getName() + "size" + filePart.getSize() + "file type" + filePart.getContentType());
-            inputStream = filePart.getInputStream();
+            inputStream = ((Part) filePart).getInputStream();
         }
 
         // set in model

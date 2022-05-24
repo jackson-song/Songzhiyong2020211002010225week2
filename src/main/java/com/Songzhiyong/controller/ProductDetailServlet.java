@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 
 import com.Songzhiyong.dao.ProductDao;
 import com.Songzhiyong.model.Category;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/productDetails")
-public class productDetailServlet extends HttpServlet {
+public class ProductDetailServlet extends HttpServlet {
     Connection con = null;
     @Override
     public void init()  {

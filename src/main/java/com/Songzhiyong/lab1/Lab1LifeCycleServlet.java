@@ -1,4 +1,4 @@
-package com.Songzhiyong.Lab1;
+package com.Songzhiyong.lab1;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "lab1LifeCycleServlet", value = "/lab1Life")
-public class lab1LifeCycleServlet extends HttpServlet {
+public class Lab1LifeCycleServlet extends HttpServlet {
     int time=0;
-    public lab1LifeCycleServlet(){
+    public Lab1LifeCycleServlet(){
         System.out.println("I Am from default constructor");
         System.out.println("2020211002010225Songzhiyong");
     }

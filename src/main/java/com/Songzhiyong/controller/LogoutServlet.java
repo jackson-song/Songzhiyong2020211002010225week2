@@ -1,4 +1,4 @@
-package com.controller;
+package com.Songzhiyong.controller;
 /*
  * coding: UTF-8
  * @Author: 宋智勇
