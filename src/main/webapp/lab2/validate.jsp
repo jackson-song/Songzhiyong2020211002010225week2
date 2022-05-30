@@ -17,7 +17,7 @@
 <jsp:setProperty name="login" property="username" value='<%=request.getParameter("username")%>'/>
 <jsp:setProperty name="login" property="password" value='<%=request.getParameter("password")%>'/>
 <%
-    //todo 3: use if check username is admin and ppassword is admin
+    //todo 3: use if check username is admin and password is admin
     if(login.getUsername().equals("admin")&&login.getPassword().equals("admin")){
 %>
 <%--todo 4: use jsp:forward to welcome.jsp page--%>

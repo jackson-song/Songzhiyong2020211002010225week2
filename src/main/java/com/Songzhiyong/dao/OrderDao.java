@@ -20,7 +20,9 @@ import com.Songzhiyong.model.Order;
 
 import com.Songzhiyong.model.Product;
 
-import javax.persistence.criteria.Order;
+
+
+
 
 /**
  * A data access object (DAO) providing persistence and search support for Order
@@ -41,7 +43,8 @@ public class OrderDao implements IOrderDao {
             //By default,committed right after it is executed,disable the auto commit mode to enable two or more statements to be grouped into a transaction// begin the transaction:
             con.setAutoCommit(false);
             //sql =INSERT INTO userdb.order for mysql
-            String sql="INSERT INTO [dbo].[order](CustomerID,PaymentID,OrderDate,FirstName,LastName,Address1,Address2,city,state,PostalCode,Country,Phone,Notes,OrderTotal) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            System.out.println(order);
+            String sql="insert into order1 (id,PaymentID,OrderDate,FirstName,LastName,Address1,Address2,city,state,PostalCode,Country,Phone,Notes,OrderTotal) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, order.getCustomerId());
             st.setInt(2, order.getPaymentId());
@@ -62,20 +65,20 @@ public class OrderDao implements IOrderDao {
             flag = st.executeUpdate();
 
             //get newly inserted OrderId
-            String lastId="SELECT max(orderid) as orderId from [dbo].[order] ";//"SELECT max(orderid) as orderId from userdb.order"; for mysql
+            String lastId="SELECT max(orderID) as orderId from order1 ";//"SELECT max(orderid) as orderId from userdb.order"; for mysql
             ResultSet rs=con.createStatement().executeQuery(lastId);
             rs.next();
-            int orderId=rs.getInt("orderId");
+            int orderId=rs.getInt("OrderID");
             //set all orderDetails
             Set<Item> orderDetails =order.getOrderDetails();
             //OrderDetailsDao odDao=new OrderDetailsDao();
             Iterator<Item> i=orderDetails.iterator();
-            String sql1="INSERT INTO orderdetail(OrderID,ProductID,price,Quantity,Total) values(?,?,?,?,?)";
+            String sql1="insert into orderdetail(OrderID,ProductID,Price,Quantity,Total) values(?,?,?,?,?)";
             PreparedStatement st1 = con.prepareStatement(sql1);
             while(i.hasNext()){
                 Item item= i.next();
                 st1.setInt(1, orderId);
-                st1.setInt(2, item.getProduct().getProductId());
+                st1.setInt(2, item.getProduct().getProductID());
                 st1.setDouble(3, item.getProduct().getPrice());
                 st1.setInt(4, item.getQuantity());
                 st1.setDouble(5, item.getQuantity()*item.getProduct().getPrice());
@@ -113,14 +116,14 @@ public class OrderDao implements IOrderDao {
                 + ", value: " + value);
         List<Order> orderList=new ArrayList<Order>();
         try {
-            String queryString = "select * from [dbo].[order] as model where model."+ propertyName + "= ?";//use userdb.Order for mysql
+            String queryString = "select * from order1 as model where model."+ propertyName + "= ?";//use userdb.Order for mysql
             PreparedStatement st = con.prepareStatement(queryString);
             st.setObject(1, value);
             ResultSet	rs = st.executeQuery();
             while(rs.next()){
                 Order o=new Order();
                 o.setOrderId(rs.getInt("OrderID"));
-                o.setCustomerId(rs.getInt("CustomerID"));
+                o.setCustomerId(rs.getInt("id"));
                 o.setPaymentId(rs.getInt("PaymentID"));
                 o.setOrderDate(rs.getTimestamp("OrderDate"));
                 o.setFirstName(rs.getString("FirstName"));
@@ -137,7 +140,7 @@ public class OrderDao implements IOrderDao {
 
                 orderList.add(o);
             }
-        } catch (RuntimeException | SQLException re) {
+        } catch (SQLException re) {
             try {
                 throw re;
             } catch (Exception e) {
@@ -148,7 +151,7 @@ public class OrderDao implements IOrderDao {
     }
     @Override
     public List<Order> findByUserId(Connection con,Object CustomerID) {
-        return findByProperty(con,"CustomerID", CustomerID);
+        return findByProperty(con,"id", CustomerID);
     }
 
     @Override
@@ -192,7 +195,7 @@ public class OrderDao implements IOrderDao {
         return findByProperty(con,"NOTES", notes);
     }
     @Override
-    public List<Order> findByOrderTotal(Connection con, Object orderTotal) {
+    public List<Order> findByOrderTotal(Connection con,Object orderTotal) {
         return findByProperty(con,"ORDER_TOTAL", orderTotal);
     }
     @Override
@@ -200,14 +203,14 @@ public class OrderDao implements IOrderDao {
 
         List<Order> orderList=new ArrayList<Order>();
         try {
-            String queryString = "select * from [dbo].[Order]";// userdb.Order for mysql
+            String queryString = "select * from order1";// userdb.Order for mysql
             PreparedStatement st = con.prepareStatement(queryString);
             //st.setObject(1, value);
             ResultSet	rs = st.executeQuery();
             while(rs.next()){
                 Order o=new Order();
                 o.setOrderId(rs.getInt("OrderID"));
-                o.setCustomerId(rs.getInt("CustomerID"));
+                o.setCustomerId(rs.getInt("id"));
                 o.setPaymentId(rs.getInt("PaymentID"));
                 o.setOrderDate(rs.getTimestamp("OrderDate"));
                 o.setFirstName(rs.getString("FirstName"));
@@ -224,7 +227,7 @@ public class OrderDao implements IOrderDao {
 
                 orderList.add(o);
             }
-        } catch (RuntimeException | SQLException re) {
+        } catch (SQLException re) {
             try {
                 throw re;
             } catch (Exception e) {
@@ -238,19 +241,19 @@ public class OrderDao implements IOrderDao {
     public List<Item> findItemsByOrderId(Connection con,int orderId) {
         List<Item> itemList=new ArrayList<Item>();
         try {
-            String sql="SELECT 	* FROM orderdetail AS o INNER JOIN product AS p ON o.ProductId=p.ProductId WHERE o.OrderID="+orderId;
+            String sql="SELECT 	* FROM orderdetail AS o INNER JOIN product AS p ON o.ProductID=p.ProductID WHERE o.OrderID="+orderId;
             ResultSet rs=con.createStatement().executeQuery(sql);
             while(rs.next()){
                 Item i=new Item();
                 Product p=new Product();
-                p.setProductId(rs.getInt("ProductId"));
+                p.setProductID(rs.getInt("ProductID"));
                 p.setPrice(rs.getDouble("price"));
                 p.setProductName(rs.getString("productName"));
-                i.setQuantity(rs.getInt("quantity"));
+                i.setQuantity(rs.getInt("Quantity"));
                 i.setProduct(p);
                 itemList.add(i);
             }
-        } catch (RuntimeException | SQLException re) {;
+        } catch (SQLException re) {;
             try {
                 throw re;
             } catch (Exception e) {
